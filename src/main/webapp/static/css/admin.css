@@ -1,0 +1,158 @@
+#admin_top{
+    z-index: 1;
+}
+body{
+    height: 148px;
+}
+
+.navbar-brand{
+    color:#eeeeee !important;
+    position: relative;
+    padding-left:1px ;
+    padding-bottom: 10px;
+
+}
+
+.navbar-brand > i{
+    font-size: 32px;
+    color: white;
+
+    padding-right: 10px;
+    top: 24px;
+    left: 0;
+}
+
+.navbar-inverse > div > a {
+    color: white;
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 70px;
+    line-height: 70px;
+}
+
+.navbar-inverse > div > a:hover {
+     text-decoration: none;
+ }
+
+.navbar-inverse > div > a > i {
+    font-size: 28px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.login-info-1{
+    height: 70px;
+    line-height: 70px;
+    color: white;
+    padding-left: 160px;
+}
+.login-info-2{
+    height: 70px;
+    line-height: 70px;
+    color: white;
+    padding-left: 7px;
+}
+/*侧边栏*/
+#slid_bar{
+    margin-top: -20px;
+    width: 220px;
+    height: 500px;
+    background: #eeeeee;
+    float: left;
+}
+
+.slidbar_title{
+    height: 55px;
+    margin: 0;
+    position: relative;
+    padding-left: 10px;
+    width: 220px    ;
+    background: #f0f0f0;
+    z-index: 1;
+}
+
+.slidbar_title > p{
+    border-bottom: 1px gray solid;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    width: 210px;
+    padding-bottom: 5px;
+}
+
+.slidbar_title > p >span:first-child{
+    font-size: 16px;
+}
+
+.slidbar_title > p >span:last-child{
+    font-size:11px ;
+}
+.slidebar_content{
+    width:220px;
+    height: 100%;
+    background-color: #f0f0f0;
+    z-index: 0;
+    padding-top: 130px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-left: 10px;
+}
+
+.slidebar_content >a{
+    font-size: 4px;
+    color: #333;
+    text-decoration: none;
+}
+.slidebar_content > a > i{
+    font-size: 4px;
+    padding-right: 17px;
+    color: #0f0f0f;
+
+}
+.slidebar_content > ul > li{
+    list-style: none;
+    padding-top: 3px;
+}
+.slidebar_content > ul > li > a{
+     font-size: 10px;
+     color: #333;
+     text-decoration: none;
+ }
+
+.slidebar_content > ul > li > a >i{
+    font-weight: bolder;
+    padding-right: 4px;
+}
+
+.slidebar_content > ul > li > a:hover{
+    color: #bd2c00;
+}
+
+
+/*路径导航*/
+#path_nav{
+    margin-left: 240px;
+    padding-right: 20px;
+
+}
+.breadcrumb{
+    background: white !important;
+    margin: 0;
+    border-bottom: 1px #ccc solid;
+    border-radius: 0;
+}
+#iframe-contant{
+    z-index: -1;
+    padding-left: 240px !important;
+    padding-top: 135px !important;
+    padding-right: 20px !important;
+    position: absolute;
+    top: 0; left:0
+
+}
+
+.navactive{
+    color:#0D50EA;
+    font-weight: bolder; !important;
+}
