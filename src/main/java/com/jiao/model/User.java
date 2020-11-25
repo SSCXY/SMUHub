@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter@Setter@ToString
 public class User {
@@ -15,5 +16,6 @@ public class User {
     private String phone;
     private Integer enable;
     private Date addDate;
+    private List<Role> roles;
 
 }

@@ -30,9 +30,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row">
-        <div class="search_title_bar">搜索</div>
-    </div>
+<%--    <div class="row">--%>
+<%--        <div class="search_title_bar">搜索</div>--%>
+<%--    </div>--%>
     <div class="row">
         <form id="search_form" class="form-inline">
             <div class="form-group has-feedback">
@@ -76,127 +76,32 @@
                     <td>用户状态</td>
                     <td style="width: 100px">操作</td>
                 </tr>
+                <c:forEach items="${userDatasByPager.list}" var="user">
                 <tr>
                     <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
+                    <td>${user.username}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.email}</td>
+                    <td>
+                        <c:forEach items="${user.roles}" var="role">
+                            ${role.rname}&nbsp;
+                        </c:forEach>
+                    </td>
+                    <td>${user.enable}</td>
                     <td><a href="#" data-toggle="modal" data-target="#updateUserModal">编辑</a>&nbsp;<a href="#">删除</a></td>
                 </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
 
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-                    <td>邮箱地址</td>
-                    <td>角色</td>
-                    <td>用户状态</td>
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-
+                </c:forEach>
             </table>
         </div>
 
         <div class="row" id="pager">
-            <p class="pull-left">总共有<span>90</span>条记录，当前<span>1/9页</span></p>
+            <p class="pull-left">总共有<span>${userDatasByPager.total}</span>条记录，当前<span>${userDatasByPager.pageNum}/${userDatasByPager.pages}页</span></p>
             <div class="btngroup pull-right" >
-                <button class="btn btn-default">首页</button>
-                <button class="btn btn-default">上一页</button>
-                <button class="btn btn-default">下一页</button>
-                <button class="btn btn-default">胃页</button>
+                <a href="${pageContext.request.contextPath}/user?pageNum=1&pageSize=5" class="btn btn-default">首页</a>
+                <a href="${pageContext.request.contextPath}/user?pageNum=${userDatasByPager.prePage}&pageSize=5" class="btn btn-default">上一页</a>
+                <a href="${pageContext.request.contextPath}/user?pageNum=${userDatasByPager.nextPage}&pageSize=5" class="btn btn-default">下一页</a>
+                <a href="${pageContext.request.contextPath}/user?pageNum=${userDatasByPager.pages}&pageSize=5" class="btn btn-default">尾页</a>
             </div>
         </div>
     </div>
@@ -220,7 +125,7 @@
                             <label >角  色：</label>
                             <select class="selectpicker form-control" name="roleIds" multiple>
                                 <c:forEach items="${allRoles}" var="role">
-                                    <option value="${role.id}">${role.name}</option>
+                                    <option value="${role.id}">${role.rname}</option>
                                 </c:forEach>
                             </select>
                         </div>

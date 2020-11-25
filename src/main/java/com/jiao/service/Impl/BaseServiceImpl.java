@@ -43,6 +43,12 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
+    public void addForNotMatch(Object[] filedNames, Object[] fieldValues) {
+
+        getBaseDao().addForNotMatch(tableName,filedNames, fieldValues);
+    }
+
+    @Override
     public void delete(Integer id) {
 
         getBaseDao().delete(tableName,id);

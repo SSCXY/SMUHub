@@ -13,4 +13,6 @@ public interface BaseDao {
     public void update(@Param("tableName") String tableName, @Param("id") Integer id, @Param("objects") Object[] objects);
     public Map<Object, Object> select(@Param("tableName") String tableName, @Param("id") Integer id);
     public List<Map<Object, Object>> selectAll(@Param("tableName") String tableName);
+
+    public void addForNotMatch(@Param("tableName") String tableName,@Param("filedNames")Object[] filedNames, @Param("fieldValues")Object[] fieldValues);
 }

@@ -51,7 +51,7 @@
     <div class="slidebar_content navbar-fixed-bottom" >
         <a href="#collapse_system" data-toggle="collapse"><i  class="iconfont icon-758bianjiqi_fengexian"></i>系统设置</a>
         <ul id="collapse_system" class="collapse in collapse_all">
-            <li><a href="" data-iframesrc="${pageContext.request.contextPath}/user"><i class="iconfont icon-vertical_line"></i>角色管理</a></li>
+            <li><a href="" data-iframesrc="${pageContext.request.contextPath}/user?pageNum=1&pageSize=5"><i class="iconfont icon-vertical_line"></i>角色管理</a></li>
             <li><a href="" data-iframesrc="${pageContext.request.contextPath}/role"><i class="iconfont icon-vertical_line"></i>用户管理</a></li>
             <li><a href="" data-iframesrc="${pageContext.request.contextPath}/permission"><i class="iconfont icon-vertical_line"></i>权限管理</a></li>
 

@@ -1,7 +1,10 @@
 package com.jiao.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.jiao.model.Role;
+import com.jiao.model.User;
 import com.jiao.service.RoleService;
+import com.jiao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,18 +16,30 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/admin")
     public String admin(){
-        System.out.println("1111111111111111111111111111111111111111");
+
         return "admin";
     }
 
     @GetMapping(value = "/user")
-    public String userManage(Model model){
+    public String userManage(Model model, Integer pageNum, Integer pageSize){
 //        查询角色信息回显到前端select框中
+
         List<Role> roles = roleService.selectAll();
         model.addAttribute("allRoles",roles);
+        PageInfo<User> users;
+        if(pageNum != null && pageSize != null){
+            users = userService.selectUserByPager(pageNum, pageSize);
+        }else {
+            users = userService.selectUserByPager(1, 5);
+        }
+        System.out.println(users.getList().get(0).getRoles() + "1111111111111");
+        model.addAttribute("userDatasByPager", users);
+
         return "user";
     }
 

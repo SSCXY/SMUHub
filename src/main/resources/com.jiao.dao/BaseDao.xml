@@ -11,6 +11,16 @@
             #{param}
         </foreach>
     </insert>
+    <insert id="addForNotMatch">
+        insert into ${tableName}
+        <foreach collection="filedNames" item="param" open="(" separator="," close=")">
+            ${param}
+        </foreach>
+        values
+        <foreach collection="fieldValues" item="param" open="(" separator="," close=")">
+            #{param}
+        </foreach>
+    </insert>
     <update id="update">
         update ${tableName}
         <set>

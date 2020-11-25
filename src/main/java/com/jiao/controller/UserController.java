@@ -22,6 +22,7 @@ public class UserController {
         System.out.println("来了");
         System.out.println(user);
         System.out.println(Arrays.toString(roleIds));
+        userService.addUser(user, roleIds);
         return "redirect:user";
     }
 
