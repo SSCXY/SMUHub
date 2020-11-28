@@ -1,5 +1,6 @@
 package com.jiao.web;
 
+import com.jiao.service.ResourceService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
@@ -68,8 +69,12 @@ public class InitWebServlet extends HttpServlet {
                     paths.add(reqMapping.value()[0]);
 
                 }
-
             }
+
+            ResourceService resourceService = (ResourceService)applicationContext.getBean("resourceService");
+            resourceService.initPaths(paths);
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
