@@ -53,4 +53,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         PageInfo<User> info = new PageInfo<>(userList);
         return info;
     }
+
+    @Override
+    public User selectRelUserByUid(Integer uid) {
+        User user = userDao.getUserByUid(uid);
+        return user;
+    }
 }

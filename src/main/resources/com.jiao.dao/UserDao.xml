@@ -37,5 +37,12 @@
             and
                ur.uid=#{id}
     </select>
+    <select id="getUserByUid" resultMap="UserRelRoleMap">
+        select
+                u.id, u.username, u.password, u.email, u.phone, u.enable
+            from
+                t_user u
+            where u.id = #{uid}
+    </select>
 
 </mapper>

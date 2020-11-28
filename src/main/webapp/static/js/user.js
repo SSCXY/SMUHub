@@ -6,7 +6,9 @@ $(function () {
         todayBtn:true
     });
 
-
+    $("#updateUserModal").on("hidden.bs.modal",function () {
+        $(this).removeData("bs.modal");
+    })
 
 
 });

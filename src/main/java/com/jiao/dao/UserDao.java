@@ -15,4 +15,6 @@ public interface UserDao extends BaseDao {
     List<User> selectRelevanceUsers();
 
     Role getRoleByUid();
+
+    public User getUserByUid(@Param("uid") Integer uid);
 }

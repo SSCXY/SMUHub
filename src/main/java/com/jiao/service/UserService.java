@@ -11,4 +11,6 @@ public interface UserService extends BaseService<User> {
     List<User> selectRelevanceUsers();
 
     public PageInfo<User> selectUserByPager(int pageNum, int pageSize);
+
+    public User selectRelUserByUid(Integer uid);
 }
