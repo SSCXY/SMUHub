@@ -26,7 +26,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/user")
-    public String userManage(Model model, Integer pageNum, Integer pageSize){
+    public String userManage(Model model, Integer pageNum, Integer pageSize) throws InterruptedException {
 //        查询角色信息回显到前端select框中
 
         List<Role> roles = roleService.selectAll();
@@ -37,9 +37,9 @@ public class AdminController {
         }else {
             users = userService.selectUserByPager(1, 5);
         }
-        System.out.println(users.getList().get(0).getRoles() + "1111111111111");
-        model.addAttribute("userDatasByPager", users);
 
+        model.addAttribute("userDatasByPager", users);
+        Thread.sleep(300);
         return "user";
     }
 

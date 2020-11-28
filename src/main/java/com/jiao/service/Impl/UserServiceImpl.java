@@ -59,4 +59,41 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         User user = userDao.getUserByUid(uid);
         return user;
     }
+
+    @Transactional
+    @Override
+    public void updateUser(User user, Integer[] roleIds) {
+        if(user.getPassword().trim().equals("")) user.setPassword(null);
+//        先修改用户信息
+        this.update(user);
+//        再修改关联的角色信息
+//        1.删除id是user.getId()的角色
+        userRoleDao.deleteByUid(user.getId());
+//        2.把接收到的roleIds关联的id从新添加到表中
+        for (Integer rid: roleIds) {
+            userRoleDao.add("t_user_role", new Object[]{null,user.getId(),rid});
+        }
+    }
+
+    @Transactional
+    @Override
+    public void deleteByUidRelRole(Integer id) {
+        userRoleDao.deleteByUid(id);
+        this.delete(id);
+    }
+
+    @Override
+    public void batchDelUserBuIds(Integer[] uidArr) {
+        for (Integer id : uidArr) {
+            this.deleteByUidRelRole(id);
+        }
+    }
+
+    @Override
+    public PageInfo<User> selectUserBySearchPage(int pageNum, int pageSize, String userInfo) {
+        Page<User> pager = PageHelper.startPage(pageNum, pageSize);
+        List<User> userList = userDao.selectUserBySearchPage("%" + userInfo + "%");
+        PageInfo<User> info = new PageInfo<>(userList);
+        return null;
+    }
 }

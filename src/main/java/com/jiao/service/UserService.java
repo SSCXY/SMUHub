@@ -13,4 +13,13 @@ public interface UserService extends BaseService<User> {
     public PageInfo<User> selectUserByPager(int pageNum, int pageSize);
 
     public User selectRelUserByUid(Integer uid);
+
+    public void updateUser(User user, Integer[] roleIds);
+
+    public void deleteByUidRelRole(Integer id);
+
+    void batchDelUserBuIds(Integer[] uidArr);
+
+
+    PageInfo<User> selectUserBySearchPage(int pageNum, int pageSize, String userInfo);
 }

@@ -34,7 +34,7 @@
 <%--        <div class="search_title_bar">搜索</div>--%>
 <%--    </div>--%>
     <div class="row">
-        <form id="search_form" class="form-inline">
+        <form action="${pageContext.request.contextPath}/userSearch" id="search_form" method="post" class="form-inline">
             <div class="form-group has-feedback">
                 <label >加入时间:</label>
                 <input type="text" class="form-control input-sm form_datatime" name="regStartTime" >
@@ -54,9 +54,9 @@
             </div>
 
             <div id="search_btn" class="row form-group pull-right">
-                <button type="button" class="btn btn-default">查询</button>
+                <button id="searchBtn" type="button" class="btn btn-default">查询</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addUserModal">添加</button>
-                <button type="button" class="btn btn-default">删除</button>
+                <button id="batchDelUserBtn" type="button" class="btn btn-default">删除</button>
                 <button type="button" class="btn btn-default">导入</button>
                 <button type="button" class="btn btn-default">导出</button>
 
@@ -78,17 +78,22 @@
                 </tr>
                 <c:forEach items="${userDatasByPager.list}" var="user">
                 <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
+                    <td><input type="checkbox" value="${user.id}" name="allcheck" class="checkone" onclick="checkone();" ></td>
                     <td>${user.username}</td>
                     <td>${user.phone}</td>
                     <td>${user.email}</td>
                     <td>
                         <c:forEach items="${user.roles}" var="role">
-                            ${role.rname}&nbsp;
+                            ${role.name}&nbsp;
                         </c:forEach>
                     </td>
-                    <td>${user.enable}</td>
-                    <td><a href="#" data-toggle="modal" data-target="#updateUserModal">编辑</a>&nbsp;<a href="#">删除</a></td>
+                    <c:if test="${user.enable eq 1}">
+                        <td>已审核</td>
+                    </c:if>
+                    <c:if test="${user.enable eq 0}">
+                        <td>未审核</td>
+                    </c:if>
+                    <td><a href="${pageContext.request.contextPath}/update?id=${user.id}" data-toggle="modal" data-target="#updateUserModal">编辑</a>&nbsp;<a href="${pageContext.request.contextPath}/deleteUser?id=${user.id}" onclick="return delSure()">删除</a></td>
                 </tr>
 
                 </c:forEach>
@@ -125,7 +130,7 @@
                             <label >角  色：</label>
                             <select class="selectpicker form-control" name="roleIds" multiple>
                                 <c:forEach items="${allRoles}" var="role">
-                                    <option value="${role.id}">${role.rname}</option>
+                                    <option value="${role.id}">${role.name}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -156,35 +161,7 @@
     <div class="modal fade" id="updateUserModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true"></span></button>
-                    <h4 class="modal-title" id="updateModalLabel">修改用户</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="#" >
-                        <div class="form-group">
-                            <label>用户名：</label>
-                            <input type="text" class="form-control" name="username">
-                        </div>
-                        <div class="form-group">
-                            <label >密  码：</label>
-                            <input type="text" class="form-control" name="password">
-                        </div>
-                        <div class="form-group">
-                            <label >手机号：</label>
-                            <input type="text" class="form-control" name="username">
-                        </div>
-                        <div class="form-group">
-                            <label >邮箱：</label>
-                            <input type="text" class="form-control" name="username">
-                        </div>
-                    </form>
-                </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">编辑用户</button>
-                </div>
             </div>
         </div>
     </div>

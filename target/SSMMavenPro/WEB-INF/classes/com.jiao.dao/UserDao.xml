@@ -29,13 +29,28 @@
 
     <select id="getRoleByUid" resultType="com.jiao.model.Role">
         select
-                r.id, r.name rname,r.code
+                r.id, r.name name,r.code
             from
                 t_role r, t_user_role ur
             where
                ur.rid = r.id
             and
                ur.uid=#{id}
+    </select>
+    <select id="getUserByUid" resultMap="UserRelRoleMap">
+        select
+                u.id, u.username, u.password, u.email, u.phone, u.enable
+            from
+                t_user u
+            where u.id = #{uid}
+    </select>
+    <select id="selectUserBySearchPage" resultMap="UserRelRoleMap">
+        select
+                u.id, u.username, u.password, u.email, u.phone, u.enable
+            from
+                t_user u
+            where
+                u.username like #{userInfo} or u.phone like#{userInfo}
     </select>
 
 </mapper>

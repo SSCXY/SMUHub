@@ -17,4 +17,6 @@ public interface UserDao extends BaseDao {
     Role getRoleByUid();
 
     public User getUserByUid(@Param("uid") Integer uid);
+
+    List<User> selectUserBySearchPage(@Param("userInfo") String userInfo);
 }
