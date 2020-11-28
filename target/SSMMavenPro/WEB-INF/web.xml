@@ -28,6 +28,17 @@
     <servlet-name>SpringMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>InitWebServlet</servlet-name>
+    <servlet-class>com.jiao.web.InitWebServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitWebServlet</servlet-name>
+    <url-pattern>/1</url-pattern>
+  </servlet-mapping>
+
   <!-- 编码过滤器 -->
   <filter>
     <filter-name>CharacterEncoding</filter-name>

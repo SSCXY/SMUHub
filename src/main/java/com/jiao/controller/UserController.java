@@ -6,20 +6,20 @@ import com.jiao.model.Role;
 import com.jiao.model.User;
 import com.jiao.service.RoleService;
 import com.jiao.service.UserService;
+import com.jiao.web.AuthClass;
+import com.jiao.web.AuthMethod;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import jdk.nashorn.internal.runtime.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
 
-
+@AuthClass
 @Controller
 public class UserController {
     @Autowired
@@ -27,7 +27,8 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-    @PostMapping(value = "/adduser")
+    @AuthMethod
+    @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     public String addUser(User user, Integer[] roleIds){
         System.out.println("来了");
         System.out.println(user);
@@ -37,7 +38,8 @@ public class UserController {
     }
 //    这个update是编辑按钮的地址
     @ResponseBody
-    @GetMapping(value = "/update", produces = "text/html;charset=UTF-8")
+    @AuthMethod
+    @RequestMapping(value = "/update", produces = "text/html;charset=UTF-8", method = RequestMethod.GET)
     public String updateUser(Integer id, HttpServletRequest request){
         User user = userService.selectRelUserByUid(id);
         List<Role> allroles = roleService.selectAll();
@@ -90,19 +92,24 @@ public class UserController {
                 "                </div>\n" +
                 "\n" ;
     }
-    @PostMapping(value = "updateUser")
+
+    @AuthMethod
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     public String updateUser(User user, Integer[] roleIds){
         userService.updateUser(user, roleIds);
         return "redirect:/user";
     }
-    @GetMapping(value = "/deleteUser")
+
+    @AuthMethod
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
     public String deleteUser(Integer id){
         userService.deleteByUidRelRole(id);
         return "redirect:user";
     }
 
     @ResponseBody
-    @PostMapping(value = "/batchDelUser")
+    @AuthMethod
+    @RequestMapping(value = "/batchDelUser", method = RequestMethod.POST)
     public String batchDelUser(String uid){
         uid = uid.substring(1,uid.length() - 1);
         uid = uid.replaceAll("\"","");
@@ -117,7 +124,8 @@ public class UserController {
     }
 
 
-    @PostMapping(value = "/userSearch")
+    @AuthMethod
+    @RequestMapping(value = "/userSearch", method = RequestMethod.POST)
     public String searchUser(Model model, String userInfo){
         List<Role> roles = roleService.selectAll();
         model.addAttribute("allRoles",roles);

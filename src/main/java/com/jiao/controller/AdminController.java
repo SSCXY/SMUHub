@@ -5,13 +5,18 @@ import com.jiao.model.Role;
 import com.jiao.model.User;
 import com.jiao.service.RoleService;
 import com.jiao.service.UserService;
+import com.jiao.web.AuthClass;
+import com.jiao.web.AuthMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+@AuthClass //需要权限才能访问
 @Controller
 public class AdminController {
     @Autowired
@@ -19,13 +24,16 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/admin")
+    @AuthMethod
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(){
 
         return "admin";
     }
 
-    @GetMapping(value = "/user")
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String userManage(Model model, Integer pageNum, Integer pageSize) throws InterruptedException {
 //        查询角色信息回显到前端select框中
 
@@ -43,12 +51,13 @@ public class AdminController {
         return "user";
     }
 
-    @GetMapping(value = "/role")
+    @RequestMapping(value = "/role", method = RequestMethod.GET)
     public String roleManage(){
         return "role";
     }
 
-    @GetMapping(value = "/permission")
+    
+    @RequestMapping(value = "/permission", method = RequestMethod.GET)
     public String permissonManage(){
         return "permission";
     }
