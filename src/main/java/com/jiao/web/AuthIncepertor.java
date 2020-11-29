@@ -24,7 +24,7 @@ public class AuthIncepertor extends HandlerInterceptorAdapter {
         }else {
             throw new RuntimeException("请输入正确的url地址");
         }
-
+        System.out.println(path);
         //1.拿数据库中的权限
         List<String> allPermissionPathes = (List<String>) request.getSession().getServletContext().getAttribute("allPermissionPaths");
         //2.拿当前用户的权限

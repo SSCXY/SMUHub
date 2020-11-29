@@ -6,6 +6,7 @@ import com.jiao.model.User;
 import com.jiao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,8 +26,14 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping(value = "/loginout", method = RequestMethod.GET)
+    public String loginout(HttpSession session){
+        session.invalidate();
+        return "redirect:login";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginMethod(String userInfo, String password, HttpSession session){
+    public String loginMethod(String userInfo, String password, HttpSession session, Model model){
         User user = userService.login(userInfo, password);
         boolean ismanager = false;
         boolean ismember = false;
@@ -50,8 +57,9 @@ public class LoginController {
 //          循环结束以后把当前用户的所有权限存放在session里
             session.setAttribute("ismanager", ismanager);
             session.setAttribute("loginUserAllPath", loginUserPath);
+            session.setAttribute("userInfo", user.getUsername());
         }
 
-        return "redirect:admin";
+        return "admin";
     }
 }

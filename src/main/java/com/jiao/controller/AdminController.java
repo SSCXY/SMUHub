@@ -39,7 +39,6 @@ public class AdminController {
             return "forward:index.jsp";
 
         }else {
-            System.out.println("----------------------------------------"+ismanager);
             return "admin";
         }
 
