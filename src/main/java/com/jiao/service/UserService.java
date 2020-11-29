@@ -22,4 +22,6 @@ public interface UserService extends BaseService<User> {
 
 
     PageInfo<User> selectUserBySearchPage(int pageNum, int pageSize, String userInfo);
+
+    User login(String userInfo, String password);
 }

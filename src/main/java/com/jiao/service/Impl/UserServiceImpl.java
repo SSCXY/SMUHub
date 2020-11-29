@@ -96,4 +96,14 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         PageInfo<User> info = new PageInfo<>(userList);
         return null;
     }
+
+    @Override
+    public User login(String userInfo, String password) {
+        User user = userDao.selectByUserInfo(userInfo);
+        if(user == null) throw new RuntimeException("用户名或密码有误");
+        if(!password.equals(user.getPassword())){
+            throw new RuntimeException("用户名或密码有误");
+        }
+        return user;
+    }
 }

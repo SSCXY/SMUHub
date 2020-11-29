@@ -31,7 +31,7 @@ $(function () {
             var flag = delSure();
             if (flag) {
                 $.ajax({
-                    url:'/batchDelUser',
+                    url:'/admin/batchDelUser',
                     type:'POST',
                     data:{
                         uid:datas

@@ -29,7 +29,7 @@
                     <form id="myform" method="post" action="${pageContext.request.contextPath}/login">
                         <div class="lg-username input-item clearfix">
                             <i class="iconfont"></i>
-                            <input type="text"  name="username" placeholder="请输入用户名">
+                            <input type="text"  name="userInfo" placeholder="请输入用户名">
                         </div>
                         <div class="lg-password input-item clearfix">
                             <i class="iconfont"></i>

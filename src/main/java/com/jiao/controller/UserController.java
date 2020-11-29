@@ -30,9 +30,7 @@ public class UserController {
     @AuthMethod
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     public String addUser(User user, Integer[] roleIds){
-        System.out.println("来了");
-        System.out.println(user);
-        System.out.println(Arrays.toString(roleIds));
+
         userService.addUser(user, roleIds);
         return "redirect:user";
     }

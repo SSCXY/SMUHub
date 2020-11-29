@@ -10,10 +10,29 @@
         <result column="email" property="email"/>
         <result column="phone" property="phone"/>
         <result column="enable" property="enable"/>
-        <collection property="roles" select="com.jiao.dao.UserDao.getRoleByUid" column="id">
+            <collection property="roles" select="com.jiao.dao.UserDao.getRoleByUid" column="id">
 
-        </collection>
+            </collection>
     </resultMap>
+
+    <resultMap id="UserRelRoleResMap" type="com.jiao.model.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="enable" property="enable"/>
+            <collection property="roles" ofType="com.jiao.model.Role">
+                <id column="id" property="id"/>
+                <result column="name" property="name"/>
+                <result column="code" property="code"/>
+                    <collection property="resources" ofType="com.jiao.model.Resource" >
+                        <id column="resid" property="id"/>
+                        <result column="path" property="path"/>
+                    </collection>
+            </collection>
+    </resultMap>
+
 
     <select id="getUserByName" resultType="com.jiao.model.User">
         select * from t_user u where u.username = #{username}
@@ -51,6 +70,18 @@
                 t_user u
             where
                 u.username like #{userInfo} or u.phone like#{userInfo}
+    </select>
+<!--  用户-角色-权限进行关联，把表中所有字段都取出来   -->
+    <select id="selectByUserInfo" resultMap="UserRelRoleResMap">
+       select  u.id, u.username, u.password, u.email, u.phone, u.enable,
+                r.id, r.name, r.code,
+                res.id resid, res.path
+            FROM
+                t_user u, t_role r, t_resource res, t_user_role ur, t_role_resources rr
+            where
+               ( u.id = ur.uid and ur.rid = r.id and r.id = rr.rid and rr.resid = res.id)
+            and
+                (u.username = #{userInfo} or u.email = #{userInfo} or u.phone = #{userInfo})
     </select>
 
 </mapper>

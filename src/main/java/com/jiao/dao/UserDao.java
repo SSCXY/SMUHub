@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface UserDao extends BaseDao {
-    public User getUserByName(@Param("username") String username);
+    User getUserByName(@Param("username") String username);
 
     List<User> selectRelevanceUsers();
 
@@ -19,4 +19,6 @@ public interface UserDao extends BaseDao {
     public User getUserByUid(@Param("uid") Integer uid);
 
     List<User> selectUserBySearchPage(@Param("userInfo") String userInfo);
+
+    User selectByUserInfo(@Param("userInfo") String userInfo);
 }

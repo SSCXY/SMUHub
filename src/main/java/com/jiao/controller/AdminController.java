@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @AuthClass //需要权限才能访问
@@ -25,11 +26,23 @@ public class AdminController {
     private UserService userService;
 
     @AuthMethod
-
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin(){
+    public String admin(HttpSession session){
+        boolean ismanager = false;
+        if (session.getAttribute("ismanager") == null){
+            return "forward:index.jsp";
+        }else {
+            ismanager = (Boolean)session.getAttribute("ismanager");
+        }
 
-        return "admin";
+        if (ismanager == false){
+            return "forward:index.jsp";
+
+        }else {
+            System.out.println("----------------------------------------"+ismanager);
+            return "admin";
+        }
+
     }
 
 
