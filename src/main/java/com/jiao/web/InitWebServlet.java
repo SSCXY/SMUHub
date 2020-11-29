@@ -73,7 +73,7 @@ public class InitWebServlet extends HttpServlet {
 
             ResourceService resourceService = (ResourceService)applicationContext.getBean("resourceService");
             resourceService.initPaths(paths);
-
+            context.setAttribute("allPermissionPaths",paths);//把所有需要权限控制的path存到域中，避免每次都到数据库中查询
 
         }catch (Exception e){
             e.printStackTrace();
