@@ -126,11 +126,10 @@ public class UserController {
     @RequestMapping(value = "/userSearch", method = RequestMethod.POST)
     public String searchUser(Model model, String userInfo){
         List<Role> roles = roleService.selectAll();
-        model.addAttribute("allRoles",roles);
         int pageNum = 1, pageSize = 5;
         PageInfo<User> users = userService.selectUserBySearchPage(pageNum, pageSize, userInfo);
 
-
+        model.addAttribute("allRoles",roles);
         model.addAttribute("userDatasByPager", users);
 
         return "user";

@@ -60,6 +60,6 @@ public class LoginController {
             session.setAttribute("userInfo", user.getUsername());
         }
 
-        return "admin";
+        return "redirect:admin";
     }
 }

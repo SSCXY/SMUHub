@@ -94,7 +94,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         Page<User> pager = PageHelper.startPage(pageNum, pageSize);
         List<User> userList = userDao.selectUserBySearchPage("%" + userInfo + "%");
         PageInfo<User> info = new PageInfo<>(userList);
-        return null;
+        return info;
     }
 
     @Override

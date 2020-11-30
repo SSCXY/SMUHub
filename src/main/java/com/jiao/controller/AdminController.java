@@ -1,8 +1,10 @@
 package com.jiao.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.jiao.model.Resource;
 import com.jiao.model.Role;
 import com.jiao.model.User;
+import com.jiao.service.ResourceService;
 import com.jiao.service.RoleService;
 import com.jiao.service.UserService;
 import com.jiao.web.AuthClass;
@@ -24,6 +26,8 @@ public class AdminController {
     private RoleService roleService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ResourceService resourceService;
 
     @AuthMethod
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -59,18 +63,22 @@ public class AdminController {
         }
 
         model.addAttribute("userDatasByPager", users);
-        Thread.sleep(300);
         return "user";
     }
 
     @RequestMapping(value = "/role", method = RequestMethod.GET)
-    public String roleManage(){
+    public String roleManage(Model model){
+        List<Role> roles = roleService.selectAll();
+        System.out.println(roles);
+        model.addAttribute("roles", roles);
         return "role";
     }
 
     
     @RequestMapping(value = "/permission", method = RequestMethod.GET)
-    public String permissonManage(){
+    public String permissonManage(Model model){
+        List<Resource> resources = resourceService.selectAll();
+        model.addAttribute("permissions", resources);
         return "permission";
     }
 }

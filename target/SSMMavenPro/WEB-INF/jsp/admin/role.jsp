@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jiao
@@ -26,27 +27,27 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row">
-        <div class="search_title_bar">搜索</div>
-    </div>
-    <div class="row">
-        <form id="search_form" class="form-inline">
+<%--    <div class="row">--%>
+<%--        <div class="search_title_bar">角色信息</div>--%>
+<%--    </div>--%>
+<%--    <div class="row">--%>
+<%--        <form id="search_form" class="form-inline">--%>
 
 
-            <div class="form-group">
-                <label>角色信息:</label>
-                <input type="text" class="form-control input-sm" name="userInfo">
-            </div>
+<%--            <div class="form-group">--%>
+<%--                <label>角色信息:</label>--%>
+<%--                <input type="text" class="form-control input-sm" name="userInfo">--%>
+<%--            </div>--%>
 
-            <div id="search_btn" class="row form-group pull-right">
-                <button type="button" class="btn btn-default">查询</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addUserModal">添加</button>
-                <button type="button" class="btn btn-default">删除</button>
+<%--&lt;%&ndash;            <div id="search_btn" class="row form-group pull-right">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <button type="button" class="btn btn-default">查询</button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addUserModal">添加</button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <button type="button" class="btn btn-default">删除</button>&ndash;%&gt;--%>
 
 
-            </div>
-        </form>
-    </div>
+<%--&lt;%&ndash;            </div>&ndash;%&gt;--%>
+<%--        </form>--%>
+<%--    </div>--%>
 
     <div id="content_table" class="row">
         <div class="table-responsive">
@@ -56,107 +57,33 @@
                     <td>角色名称</td>
                     <td>角色代码</td>
 
-                    <td style="width: 100px">操作</td>
+                    <td style="width: 100px">描述</td>
                 </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
+
+                <c:forEach items="${roles}" var="role">
+
+                    <tr>
+                        <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
+                        <td>${role.name}</td>
+                        <td>${role.code}</td>
 
 
-                    <td><a href="#" data-toggle="modal" data-target="#updateUserModal">编辑</a>&nbsp;<a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
+                        <td><a href="#" data-toggle="modal" data-target="#updateRoleModal">编辑</a>&nbsp</td>
+                    </tr>
+                </c:forEach>
 
 
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="allcheck" class="checkone" onclick="checkone();" ></td>
-                    <td>用户名</td>
-                    <td>手机号</td>
-
-
-                    <td><a href="#">编辑</a><a href="#">删除</a></td>
-                </tr>
 
             </table>
         </div>
 
         <div class="row" id="pager">
-            <p class="pull-left">总共有<span>90</span>条记录，当前<span>1/9页</span></p>
+            <p class="pull-left">总共有<span>3</span>条记录，当前<span>1/1页</span></p>
             <div class="btngroup pull-right" >
                 <button class="btn btn-default">首页</button>
                 <button class="btn btn-default">上一页</button>
                 <button class="btn btn-default">下一页</button>
-                <button class="btn btn-default">胃页</button>
+                <button class="btn btn-default">尾页</button>
             </div>
         </div>
     </div>
@@ -192,7 +119,7 @@
     </div>
 
 
-    <div class="modal fade" id="updateUserModal" tabindex="-1">
+    <div class="modal fade" id="updateRoleModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
