@@ -20,25 +20,26 @@ public class LoginController {
 
     @Autowired
     UserService userService;
-
+    //访问login页面的方法
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){
         return "login";
     }
 
+    //退出同时清空session
     @RequestMapping(value = "/loginout", method = RequestMethod.GET)
     public String loginout(HttpSession session){
         session.invalidate();
         return "redirect:login";
     }
-
+    //登录的方法
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginMethod(String userInfo, String password, HttpSession session, Model model){
+    public String loginMethod(String userInfo, String password, HttpSession session){
         User user = userService.login(userInfo, password);
         boolean ismanager = false;
-        boolean ismember = false;
         List<Resource> loginUserRes = null;
         List<String> loginUserPath  = new ArrayList<>();
+        //有一说一，这里的判断没什么必要，但我不加上就难受
         if (user != null){
             session.setAttribute("loginUser", user);
             List<Role> loginUserRoles = user.getRoles();

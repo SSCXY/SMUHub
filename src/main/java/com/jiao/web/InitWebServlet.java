@@ -20,9 +20,8 @@ public class InitWebServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 
-
     //    将spring ioc容器的引用变量初始化
-//    权限初始化
+//    权限初始化，同时拿到域对象，在项目启动时把数据库中所有权限路径都放到域中，防止反复查询
     private static ApplicationContext applicationContext;
     public static ApplicationContext getApplicationContext(){
         return applicationContext;
@@ -33,9 +32,8 @@ public class InitWebServlet extends HttpServlet {
 //        获取域对象
         ServletContext context = getServletContext();
         applicationContext = WebApplicationContextUtils.getWebApplicationContext(context);
-        System.out.println("初始化了");
         try {
-            //        权限控制初始化
+            //权限控制初始化
 //        扫描包名
             String packageName = "com.jiao.controller";
             String packageNamePath = packageName.replace(".","/");

@@ -28,10 +28,16 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private ResourceService resourceService;
-
+    //后台主页
     @AuthMethod
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(HttpSession session){
+        /*
+        * 开始我想的是只要用户登录后session中的ismanager不是true就拦截，
+        * 但我忽略了session为空时的判断，如果session为空也应该被拦截，
+        * 但是需要跳转到首页上而非做出访问权限提示
+        */
+
         boolean ismanager = false;
         if (session.getAttribute("ismanager") == null){
             return "forward:index.jsp";
@@ -47,11 +53,10 @@ public class AdminController {
         }
 
     }
-
-
+    //用户管理页面
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String userManage(Model model, Integer pageNum, Integer pageSize) throws InterruptedException {
-//        查询角色信息回显到前端select框中
+        //查询角色信息回显到前端select框中
 
         List<Role> roles = roleService.selectAll();
         model.addAttribute("allRoles",roles);
@@ -59,13 +64,14 @@ public class AdminController {
         if(pageNum != null && pageSize != null){
             users = userService.selectUserByPager(pageNum, pageSize);
         }else {
+        //这里需要给一个默认值，否则通过其他controller跳转时分页信息都是空的
             users = userService.selectUserByPager(1, 5);
         }
 
         model.addAttribute("userDatasByPager", users);
         return "user";
     }
-
+    //角色列表页面
     @RequestMapping(value = "/role", method = RequestMethod.GET)
     public String roleManage(Model model){
         List<Role> roles = roleService.selectAll();
@@ -74,7 +80,7 @@ public class AdminController {
         return "role";
     }
 
-    
+    //权限路径
     @RequestMapping(value = "/permission", method = RequestMethod.GET)
     public String permissonManage(Model model){
         List<Resource> resources = resourceService.selectAll();

@@ -27,6 +27,7 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
+    //添加用户，这里应该做些唯一性检验，但是太耗费时间了我就没做
     @AuthMethod
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     public String addUser(User user, Integer[] roleIds){
@@ -34,8 +35,7 @@ public class UserController {
         userService.addUser(user, roleIds);
         return "redirect:user";
     }
-//    这个update是编辑按钮的地址
-    @ResponseBody
+    //编辑，这里的模态框被遮住了，需要解决
     @AuthMethod
     @RequestMapping(value = "/update", produces = "text/html;charset=UTF-8", method = RequestMethod.GET)
     public String updateUser(Integer id, HttpServletRequest request){
@@ -91,6 +91,7 @@ public class UserController {
                 "\n" ;
     }
 
+    //更新角色信息
     @AuthMethod
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     public String updateUser(User user, Integer[] roleIds){

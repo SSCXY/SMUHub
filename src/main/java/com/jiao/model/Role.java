@@ -13,6 +13,7 @@ public class Role {
     private String code;
     private List<Resource> resources;
 
+    //重写了equals，不然比较的是内存地址
     @Override
     public boolean equals(Object object){
         if (this == object) return true;
