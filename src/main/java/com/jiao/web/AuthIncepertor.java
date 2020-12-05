@@ -15,7 +15,7 @@ public class AuthIncepertor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        String path;
+        String path="";
         /*如果用户输入的url地址在controller里没有相对应的，就给出相应的提示*/
         if (handler instanceof HandlerMethod){
             HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -23,9 +23,11 @@ public class AuthIncepertor extends HandlerInterceptorAdapter {
             RequestMapping annotation = method.getAnnotation(RequestMapping.class);
             path = annotation.value()[0];
         }else {
+
+
             throw new RuntimeException("请输入正确的url地址");
         }
-        System.out.println(path);
+//        System.out.println(path);
         //1.拿数据库表中的所有权限
         List<String> allPermissionPathes = (List<String>) request.getSession().getServletContext().getAttribute("allPermissionPaths");
         //2.拿当前用户具备的权限
