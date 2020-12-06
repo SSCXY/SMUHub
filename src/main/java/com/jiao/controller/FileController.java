@@ -1,9 +1,9 @@
 package com.jiao.controller;
 
 
-import com.jiao.model.UploadFile;
-import com.jiao.model.User;
-import com.jiao.service.FileService;
+import com.jiao.model.Uploadfile;
+
+import com.jiao.service.UploadfileService;
 import com.jiao.web.AuthClass;
 import com.jiao.web.AuthMethod;
 import org.apache.commons.io.FileUtils;
@@ -23,7 +23,7 @@ import java.util.Date;
 @Controller
 public class FileController {
     @Autowired
-    private FileService fileService;
+    private UploadfileService fileService;
 
     @AuthMethod
     @RequestMapping(value = "/file", method = RequestMethod.GET)
@@ -51,12 +51,19 @@ public class FileController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            UploadFile uploadFile = new UploadFile(creator,filename, path, new Date());
+            Uploadfile uploadFile = new Uploadfile(creator,filename, path, new Date());
             fileService.add(uploadFile);
 
             System.out.println(filename + "---------" + "全名：" + fileFullName + "----------" + creator);
         }
         return "文件上传成功";
     }
+
+    @AuthMethod
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
+    void download(){
+
+    }
+
 
 }

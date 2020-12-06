@@ -1,11 +1,15 @@
 package com.jiao.web;
 
+import com.jiao.model.Uploadfile;
 import com.jiao.service.ResourceService;
+import com.jiao.service.UploadfileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,12 +30,17 @@ public class InitWebServlet extends HttpServlet {
     public static ApplicationContext getApplicationContext(){
         return applicationContext;
     }
-
+    @Autowired
+    private UploadfileService fileService;
     @Override
-    public void init() throws ServletException {
+    public void init(ServletConfig config) throws ServletException {
 //        获取域对象
-        ServletContext context = getServletContext();
+        ServletContext context = config.getServletContext();
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext()); //加上这行
         applicationContext = WebApplicationContextUtils.getWebApplicationContext(context);
+        List<Uploadfile> allFiles = fileService.selectAll();
+        context.setAttribute("allFiles", allFiles);
+        System.out.println("Servlet启动时：" + allFiles);
         try {
             //权限控制初始化
 //        扫描包名
