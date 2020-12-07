@@ -128,7 +128,7 @@
                         </div>
                         <div class="form-group">
                             <label >角  色：</label>
-                            <select class="selectpicker form-control" name="roleIds" multiple>
+                            <select class="selectpicker form-control" name="roleIds" >
                                 <c:forEach items="${allRoles}" var="role">
                                     <option value="${role.id}">${role.name}</option>
                                 </c:forEach>

@@ -36,6 +36,7 @@ public class UserController {
         return "redirect:user";
     }
     //编辑，这里的模态框被遮住了，需要解决
+    @ResponseBody
     @AuthMethod
     @RequestMapping(value = "/update", produces = "text/html;charset=UTF-8", method = RequestMethod.GET)
     public String updateUser(Integer id, HttpServletRequest request){
@@ -52,7 +53,7 @@ public class UserController {
 
         String path = request.getContextPath();
 
-        return "                <div class=\"modal-header\">\n" +
+        return "              <div class=\"modal-header\">\n" +
                 "                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" ><span aria-hidden=\"true\"></span></button>\n" +
                 "                    <h4 class=\"modal-title\" id=\"updateModalLabel\">修改用户</h4>\n" +
                 "                </div>\n" +
@@ -73,7 +74,7 @@ public class UserController {
                 "                        </div>\n" +
                 "                        <div class=\"form-group\">\n" +
                 "                            <label >角  色：</label>\n" +
-                "                            <select class=\"selectpicker form-control\" name=\"roleIds\" multiple>\n" +
+                "                            <select class=\"selectpicker form-control\" name=\"roleIds\" >\n" +
                                                 optstr +
                 "                            </select>\n" +
                 "                        </div>\n" +

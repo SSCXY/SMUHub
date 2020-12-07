@@ -54,6 +54,7 @@
             <li><a href="" data-iframesrc="${pageContext.request.contextPath}/user?pageNum=1&pageSize=5"><i class="iconfont icon-vertical_line"></i>用户管理</a></li>
             <li><a href="" data-iframesrc="${pageContext.request.contextPath}/role"><i class="iconfont icon-vertical_line"></i>角色列表</a></li>
             <li><a href="" data-iframesrc="${pageContext.request.contextPath}/permission"><i class="iconfont icon-vertical_line"></i>权限列表</a></li>
+            <li><a href="" data-iframesrc="${pageContext.request.contextPath}/file"><i class="iconfont icon-vertical_line"></i>文件列表</a></li>
 
         </ul>
     </div>

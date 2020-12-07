@@ -10,6 +10,7 @@ public class Uploadfile {
     private Integer id;
     private String creator;
     private String filename;
+    private String filetype;
     private String path;
     private Date addDate;
 
@@ -17,10 +18,11 @@ public class Uploadfile {
 
     }
 
-    public Uploadfile(String creator, String filename, String path, Date addDate) {
+    public Uploadfile(String creator, String filename,String filetype, String path, Date addDate) {
         this.creator = creator;
         this.filename = filename;
         this.path = path;
         this.addDate = addDate;
+        this.filetype = filetype;
     }
 }

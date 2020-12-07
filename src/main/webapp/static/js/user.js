@@ -78,7 +78,7 @@ function checkone() {
 }
 
 function updateUserFormSubmit() {
-    alert("1234")
+
     // $("#updateUserForm").submit();
 }
 function delSure() {
