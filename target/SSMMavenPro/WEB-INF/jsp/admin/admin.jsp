@@ -35,7 +35,7 @@
 
             <div class="col-md-8 col-md-offset8">
                 <i class="iconfont icon-character  login-info-1"><%=session.getAttribute("userInfo")%></i>
-                <i class="iconfont icon-rili  login-info-2">2020-11-14</i>
+                <i class="iconfont icon-rili  login-info-2">2020-12-14</i>
                 <a href="${pageContext.request.contextPath}/loginout" class="pull-right"><i class="iconfont">&#xe7eb</i></a>
             </div>
         </div>

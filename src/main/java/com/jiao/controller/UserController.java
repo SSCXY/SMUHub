@@ -111,6 +111,7 @@ public class UserController {
     @AuthMethod
     @RequestMapping(value = "/batchDelUser", method = RequestMethod.POST)
     public String batchDelUser(String uid){
+        System.out.println(uid);
         uid = uid.substring(1,uid.length() - 1);
         uid = uid.replaceAll("\"","");
         String[] uidStrArr = uid.split(",");
@@ -120,7 +121,7 @@ public class UserController {
             uidArr[i] = Integer.parseInt(uidStrArr[i]);
         }
         userService.batchDelUserBuIds(uidArr);
-        return "success";
+        return "user";
     }
 
 

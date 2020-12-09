@@ -28,6 +28,17 @@
         <property name="maxUploadSize" value="-1"/>
     </bean>
 
+    <!-- 配置ExceptionResolver解析器 -->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 配置异常与跳转页面的对应关系 -->
+        <property name="exceptionMappings">
+            <props>
+                <prop key="com.jiao.tools.exception.NoJurisException">sorry</prop>
+                <prop key="com.jiao.tools.exception.UrlNotFoundException">badurl</prop>
+            </props>
+        </property>
+    </bean>
+
 <!--    配置请求拦截器,拦截所有请求-->
     <mvc:interceptors>
         <mvc:interceptor>

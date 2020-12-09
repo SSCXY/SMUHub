@@ -68,8 +68,8 @@
 <form action="${pageContext.request.contextPath}/upload"
       method="post" enctype="multipart/form-data">
 
-    <input type="file" name="file"/>
-    <input type="submit" value="提交"/>
+    <input type="file" class="file-container btn btn-success fileinput-button" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle" name="file"/>
+    <input type="submit" class="btn btn-success fileinput-button" value="上传"/>
 </form>
 
 

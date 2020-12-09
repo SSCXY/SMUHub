@@ -51,6 +51,18 @@
 								      </div>
                     </div>
                     <div class="form-group">
+                      <input id="register-phone" class="input-material" type="text" name="phone" placeholder="手机号"   >
+                    	<div class="invalid-feedback">
+								        	请输入您的手机号
+								      </div>
+                    </div>
+                    <div class="form-group">
+                      <input id="register-email" class="input-material" type="text" name="email" placeholder="邮箱"   >
+                    	<div class="invalid-feedback">
+								        	请输入您的邮箱地址
+								      </div>
+                    </div>
+                    <div class="form-group">
                       <button id="regbtn" type="button" name="registerSubmit" class="btn btn-primary" onclick="document.getElementById('myform').submit()">注册</button>
                     </div>
                   <small>已有账号?</small><a href="${pageContext.request.contextPath}/login" class="signup">&nbsp;登录</a>
@@ -72,7 +84,7 @@
     		var flagPas=false;
     		var flagPass=false;
     		/*验证用户名*/
-    		var name,passWord,passWords;
+    		var name,passWord,passWords,email,phone;
     		$("#register-username").change(function(){
     			name=$("#register-username").val();
     			if(name.length<2||name.length>10){
@@ -82,6 +94,30 @@
     			}else{
     				$("#register-username").removeClass("form-control is-invalid")
     				$("#register-username").addClass("form-control is-valid");
+    				flagName=true;
+    			}
+    		})
+    		$("#register-phone").change(function(){
+    			phone=$("#register-phone").val();
+    			if(phone.length<11 || phone.length>11){
+    				$("#register-phone").removeClass("form-control is-valid")
+    				$("#register-phone").addClass("form-control is-invalid");
+    				flagName=false;
+    			}else{
+    				$("#register-phone").removeClass("form-control is-invalid")
+    				$("#register-phone").addClass("form-control is-valid");
+    				flagName=true;
+    			}
+    		})
+    		$("#register-email").change(function(){
+              email=$("#register-email").val();
+    			if(email.length<8){
+    				$("#register-email").removeClass("form-control is-valid")
+    				$("#register-email").addClass("form-control is-invalid");
+    				flagName=false;
+    			}else{
+    				$("#register-email").removeClass("form-control is-invalid")
+    				$("#register-email").addClass("form-control is-valid");
     				flagName=true;
     			}
     		})

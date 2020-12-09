@@ -60,7 +60,11 @@ public class LoginController {
             session.setAttribute("loginUserAllPath", loginUserPath);
             session.setAttribute("userInfo", user.getUsername());
         }
+        if(ismanager == true){
+            return "redirect:admin";
+        }else {
+            return "redirect:index.jsp";
+        }
 
-        return "redirect:admin";
     }
 }

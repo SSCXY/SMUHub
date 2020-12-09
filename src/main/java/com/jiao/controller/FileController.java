@@ -8,6 +8,7 @@ import com.jiao.web.AuthClass;
 import com.jiao.web.AuthMethod;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +26,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Date;
+import java.util.List;
 
 @AuthClass
 @Controller
 public class FileController {
     @Autowired
     private UploadfileService fileService;
-
+    private static ApplicationContext applicationContext;
     @AuthMethod
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String file(HttpSession session){
@@ -64,7 +66,10 @@ public class FileController {
 
             System.out.println(filename + "---------" + "全名：" + fileFullName + "----------" + creator);
         }
-        return "文件上传成功";
+        List<Uploadfile> allFiles = fileService.selectAll();
+       session.getServletContext().setAttribute("allFiles", allFiles);
+
+        return "file";
     }
 
     @AuthMethod

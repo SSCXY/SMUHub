@@ -1,6 +1,8 @@
 package com.jiao.web;
 
 import com.jiao.model.User;
+import com.jiao.tools.exception.NoJurisException;
+import com.jiao.tools.exception.UrlNotFoundException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -24,8 +26,7 @@ public class AuthIncepertor extends HandlerInterceptorAdapter {
             path = annotation.value()[0];
         }else {
 
-
-            throw new RuntimeException("请输入正确的url地址");
+            throw new UrlNotFoundException();
         }
 //        System.out.println(path);
         //1.拿数据库表中的所有权限
@@ -47,7 +48,7 @@ public class AuthIncepertor extends HandlerInterceptorAdapter {
                 //把当前用户拥有的权限和该页面的路径进行比较，如果不包含就给出提示
                 if(!loginUserAllPaths.contains(path)){
 //                    response.sendRedirect(request.getContextPath() + "/index");
-                    throw new RuntimeException("你没有访问该页面的权限");
+                    throw new NoJurisException();
 //                  这里应跳转到首页，即项目浏览页面
                 }
             }

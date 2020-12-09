@@ -229,9 +229,14 @@
 <div class="main">
     <div class="r1">
         <div class="tu"></div>
-        <div class="bt">
+        <div class="bt" style="padding-right: 80px">
+           <c:if test="${sessionScope['userInfo'] eq null}">
+               <a href="${pageContext.request.contextPath}/login" style="color: white;font-size: 30px;text-decoration: none">登录</a>
+           </c:if>
+           <c:if test="${sessionScope['userInfo'] ne null }">
+               <a href="${pageContext.request.contextPath}/loginout" style="color: white;font-size: 30px;text-decoration: none">你好,${sessionScope["userInfo"]}</a>
+           </c:if>
 
-            <a href="${pageContext.request.contextPath}/login" style="color: white;font-size: 30px;text-decoration: none">登录</a>
         </div>
     </div>
 
