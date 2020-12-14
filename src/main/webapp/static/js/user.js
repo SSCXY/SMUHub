@@ -26,12 +26,13 @@ $(function () {
             checkboxes.each(function () {
                 userIds.push(this.value) ;
             });
+            alert(userIds)
             var datas = JSON.stringify(userIds);
         //    获取到id后批量删除
             var flag = delSure();
             if (flag) {
                 $.ajax({
-                    url:'/admin/batchDelUser',
+                    url:'/batchDelUser',
                     type:'POST',
                     data:{
                         uid:datas
